@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pdf to Website</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="./index.css">
+
 </head>
 <body>
-    <input type="file" id="inpFile">
-    <button type="button" id="btnUpload">Upload</button>
-    <br>
-    <br>
-    <textarea class="textResult" style="width: 300px; height: 150px;" id="resultText" placeholder="Your text..."></textarea>
-
+    <div class="main-container">
+        <img src="Images/Download Files.png" class="left-image">
+        <img src="Images/Upload.png" class="right-image">
+        <div class="wrapper">
+            <label for="inpFile" class="upload-label">
+                <img src="Images/Upload.png" class="upload-icon">
+                <span class="upload-text">Drag & drop your files or <span class="browse-link">browse</span></span>
+            </label>
+            <input type="file" id="inpFile" class="file-input">
+            <textarea class="textResult" id="resultText" placeholder="Your text..."></textarea>
+            
+            <button type="button" id="btnUpload" class="upload-button">Upload</button>
+            
+            
+        </div>
+        
+    </div>
+    
     <script>
         const btnUpload = document.getElementById("btnUpload");
         const inpFile = document.getElementById("inpFile");
