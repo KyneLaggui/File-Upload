@@ -15,12 +15,19 @@
         <div class="wrapper">
             <label for="inpFile" class="upload-label">
                 <img src="Images/Upload.png" class="upload-icon">
-                <span class="upload-text">Drag & drop your files or <span class="browse-link">browse</span></span>
+                <span class="upload-text">Drag & drop your PDF file or <span class="browse-link">browse</span></span>
             </label>
-            <input type="file" id="inpFile" class="file-input">
+            <input type="file" id="inpFile" class="file-input" accept="application/pdf">
+            <div id="fileNameContainer" class="file-name-container">
+                File: <span id="fileName"></span>
+            </div>
+            <div class="button-upload">
+                <button type="button" id="btnUpload" class="upload-button">Upload</button>
+                <button type="button" id="btnCancel" class="cancel-button">Cancel</button>
+            </div>
             <textarea class="textResult" id="resultText" placeholder="Your text..."></textarea>
             
-            <button type="button" id="btnUpload" class="upload-button">Upload</button>
+            
             
             
         </div>
@@ -29,8 +36,22 @@
     
     <script>
         const btnUpload = document.getElementById("btnUpload");
+        const fileNameContainer = document.getElementById("fileNameContainer");
         const inpFile = document.getElementById("inpFile");
         const resultText = document.getElementById("resultText");
+        const btnCancel = document.getElementById("btnCancel");
+
+        inpFile.addEventListener("change", () => {
+        const pdfFile = inpFile.files[0];
+        if (pdfFile && pdfFile.type === "application/pdf") {
+            fileName.textContent = pdfFile.name;
+            fileNameContainer.style.display = "block"; // Show the file name container
+            btnUpload.disabled = false; // Enable the upload button
+        } else {
+            fileNameContainer.style.display = "none"; // Hide the file name container
+            btnUpload.disabled = true; // Disable the upload button
+        }
+        });
 
         btnUpload.addEventListener("click", ()=>{
             const formData = new FormData();
@@ -45,6 +66,13 @@
             }).then(extractedText => {
                 resultText.value = extractedText.trim();
             })
+        });
+
+        btnCancel.addEventListener("click", () => {
+            inpFile.value = "";
+            resultText.value = "";
+            btnUpload.disabled = true; 
+            fileNameContainer.style.display = "none";
         });
     </script>
 </body>
