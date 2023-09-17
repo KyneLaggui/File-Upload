@@ -22,7 +22,8 @@ body {
 }
 
 .wrapper {
-    width: 25%;
+    width: 90%; 
+    max-width: 25em;
     background-color: white;
     padding: 2.5em;   
     border-radius: 30px; 
@@ -128,4 +129,21 @@ body {
   
 .cancel-button:hover {
     background-color: #c82333;
+}
+
+@media screen and (max-width: 768px) {
+
+    .wrapper {
+        padding: 1.5em;
+        margin: 1em;
+        
+    }
+
+    .upload-label {
+        padding: 1em;
+    }
+
+    .left-image, .right-image {
+        display: none;
+    }
 }

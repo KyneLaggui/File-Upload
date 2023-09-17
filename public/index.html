@@ -53,7 +53,7 @@
         }
         });
 
-        btnUpload.addEventListener("click", ()=>{
+        btnUpload.addEventListener("click", () => {
             const formData = new FormData();
 
             formData.append("pdfFile", inpFile.files[0]);
@@ -64,8 +64,10 @@
             }).then(response => {
                 return response.text();
             }).then(extractedText => {
-                resultText.value = extractedText.trim();
-            })
+                // Use regular expression to identify bold text and add style attribute to change color to red
+                extractedText = extractedText.replace(/<b>(.*?)<\/b>/g, '<span style="color: red;">$1</span>');
+                resultText.innerHTML = extractedText.trim();
+            });
         });
 
         btnCancel.addEventListener("click", () => {
