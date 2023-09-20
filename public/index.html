@@ -45,11 +45,11 @@
         const pdfFile = inpFile.files[0];
         if (pdfFile && pdfFile.type === "application/pdf") {
             fileName.textContent = pdfFile.name;
-            fileNameContainer.style.display = "block"; // Show the file name container
-            btnUpload.disabled = false; // Enable the upload button
+            fileNameContainer.style.display = "block"; 
+            btnUpload.disabled = false; 
         } else {
-            fileNameContainer.style.display = "none"; // Hide the file name container
-            btnUpload.disabled = true; // Disable the upload button
+            fileNameContainer.style.display = "none"; 
+            btnUpload.disabled = true; 
         }
         });
 
@@ -64,7 +64,7 @@
             }).then(response => {
                 return response.text();
             }).then(extractedText => {
-                // Use regular expression to identify bold text and add style attribute to change color to red
+                
                 extractedText = extractedText.replace(/<b>(.*?)<\/b>/g, '<span style="color: red;">$1</span>');
                 resultText.innerHTML = extractedText.trim();
             });
